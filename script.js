@@ -317,8 +317,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Show all projects by default
-    filterButtons[0].click();
+    // Show all projects by default - مع التحقق
+    if (filterButtons.length > 0) {
+        filterButtons[0].click();
+    } else {
+        console.error("لم يتم العثور على أزرار التصفية (.filter-btn)");
+    }
 });
 
 // Save chat history in localStorage on page unload
