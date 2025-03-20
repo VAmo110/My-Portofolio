@@ -317,12 +317,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Show all projects by default - مع التحقق
     if (filterButtons.length > 0) {
         filterButtons[0].click();
     } else {
         console.error("لم يتم العثور على أزرار التصفية (.filter-btn)");
     }
+
+    // إضافة Dark Mode Toggle
+    const toggleDarkMode = document.getElementById('toggle-dark-mode');
+    const body = document.getElementById('body');
+    let isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+    if (isDarkMode) {
+        body.classList.add('dark-mode');
+    }
+
+    toggleDarkMode.addEventListener('click', () => {
+        isDarkMode = !isDarkMode;
+        body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', isDarkMode);
+        gsap.from(body, { opacity: 0.8, duration: 0.5 });
+    });
+
+    // إضافة أنيميشن بسيط للعناصر عند التحميل
+    gsap.utils.toArray('.section h2').forEach(h2 => {
+        h2.addEventListener('mouseenter', () => {
+            gsap.to(h2, { x: 10, duration: 0.3, ease: "power2.inOut", yoyo: true, repeat: 1 });
+        });
+    });
+
+    // تحسين Responsive Design
+    function adjustLayout() {
+        if (window.innerWidth < 768) {
+            gsap.to('.section', { padding: '1rem', duration: 0.3 });
+        } else {
+            gsap.to('.section', { padding: '1.5rem', duration: 0.3 });
+        }
+    }
+    window.addEventListener('resize', adjustLayout);
+    adjustLayout();
 });
 
 // Save chat history in localStorage on page unload
