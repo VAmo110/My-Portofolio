@@ -1,3 +1,135 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities; 
+@tailwind utilities;
+
+/* Custom Layers for Tailwind */
+@layer components {
+    /* Sticky Navigation Menu */
+    .sticky-nav {
+        @apply transition-colors duration-300 ease-in-out;
+    }
+
+    .nav-link {
+        @apply relative pb-1 transition-colors duration-300 ease-in-out;
+    }
+
+    .nav-link::after {
+        @apply absolute bottom-0 left-0 w-full h-0.5 bg-[#d69e2e] scale-x-0 origin-bottom-right transition-transform duration-300 ease-in-out content-[""];
+    }
+
+    .nav-link:hover::after {
+        @apply scale-x-100 origin-bottom-left;
+    }
+
+    .nav-link.active::after {
+        @apply scale-x-100 origin-bottom-left;
+    }
+
+    /* Animated Progress Bars */
+    .progress-bar {
+        @apply transition-all duration-200 ease-out;
+    }
+
+    /* Interactive Timeline */
+    .timeline {
+        @apply relative list-none p-0;
+    }
+
+    .timeline-item {
+        @apply relative py-4 cursor-pointer transition-all duration-300 ease-in-out;
+    }
+
+    .timeline-item:hover {
+        @apply pl-2;
+    }
+
+    .timeline-item::before {
+        @apply absolute -left-5 top-1/2 w-2.5 h-2.5 bg-[#d69e2e] rounded-full transform -translate-y-1/2 transition-transform duration-300 ease-in-out content-[""];
+    }
+
+    .timeline-item:hover::before {
+        @apply scale-125;
+    }
+
+    .timeline-item::after {
+        @apply absolute -left-4 top-0 w-0.5 h-full bg-[#d69e2e] opacity-50 content-[""];
+    }
+
+    .timeline-item:first-child::after {
+        @apply top-1/2;
+    }
+
+    .timeline-item:last-child::after {
+        @apply h-1/2;
+    }
+
+    .details {
+        @apply h-0 opacity-0 overflow-hidden transition-opacity duration-300 ease-in-out;
+    }
+
+    /* Scroll-to-Top Button */
+    #scroll-to-top {
+        @apply opacity-80 transition-opacity duration-300 ease-in-out;
+    }
+
+    #scroll-to-top:hover {
+        @apply opacity-100;
+    }
+
+    /* Dynamic Background Particles */
+    #particles-js {
+        @apply absolute w-full h-full -z-10;
+    }
+
+    /* Contact Form Validation */
+    #contact-form input:invalid:focus,
+    #contact-form textarea:invalid:focus {
+        @apply border-[#dc3545] shadow-[0_0_5px_rgba(220,53,69,0.5)];
+    }
+
+    #contact-form input:valid:focus,
+    #contact-form textarea:valid:focus {
+        @apply border-[#48bb78] shadow-[0_0_5px_rgba(72,187,120,0.5)];
+    }
+}
+
+/* Light Mode Support */
+@layer utilities {
+    .light-mode {
+        @apply bg-[#f7fafc] text-[#1a202c];
+    }
+
+    .light-mode .bg-[#1a202c] {
+        @apply bg-white;
+    }
+
+    .light-mode .text-[#d69e2e] {
+        @apply text-[#b7791f];
+    }
+
+    .light-mode .text-gray-400 {
+        @apply text-gray-600;
+    }
+
+    .light-mode .bg-[#dc3545] {
+        @apply bg-[#e53e3e];
+    }
+
+    .light-mode .bg-[#48bb78] {
+        @apply bg-[#38a169];
+    }
+
+    .light-mode .sticky-nav {
+        @apply bg-[rgba(255,255,255,0.95)];
+    }
+
+    .light-mode .nav-link::after,
+    .light-mode .nav-link.active::after {
+        @apply bg-[#b7791f];
+    }
+
+    .light-mode .timeline-item::before,
+    .light-mode .timeline-item::after {
+        @apply bg-[#b7791f];
+    }
+}
