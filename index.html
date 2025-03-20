@@ -22,17 +22,19 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body class="bg-[#1a202c] text-white font-sans overflow-x-hidden">
+<body class="bg-[#1a202c] text-white font-sans overflow-x-hidden" id="body">
     <div class="container mx-auto p-4 relative">
         <header class="fixed top-0 w-full bg-[#1a202c] shadow-md z-50 p-4 flex justify-between items-center">
             <h1 class="text-4xl text-[#d69e2e] font-bold transition-colors duration-300 hover:text-yellow-300 gsap-spinSlow">ENG Mohamed Samir</h1>
-            <button id="open-controls" class="text-[#d69e2e] hover:text-yellow-300 transition-colors duration-300 text-lg gsap-hover">Open Controls</button>
+            <div class="flex gap-4">
+                <button id="open-controls" class="text-[#d69e2e] hover:text-yellow-300 transition-colors duration-300 text-lg gsap-hover">Open Controls</button>
+                <button id="toggle-dark-mode" class="text-[#d69e2e] hover:text-yellow-300 transition-colors duration-300 text-lg gsap-hover">Toggle Dark Mode</button>
+            </div>
         </header>
 
         <main>
             <section id="home" class="section min-h-screen flex flex-col items-center justify-center relative gsap-fadeIn">
                 <div id="three-canvas" class="absolute inset-0 z-0"></div>
-                <!-- أضفت .background-animation هنا -->
                 <div class="background-animation absolute inset-0 z-0" style="background: linear-gradient(45deg, #1a202c, #d69e2e); opacity: 0;"></div>
                 <h2 class="text-3xl text-gray-200 font-bold mb-4">Yo, Nice to Meet You</h2>
                 <h1 class="text-5xl text-white font-bold mb-4 gsap-slideUp">Full-Stack Developer with Chatbot Integration Experience</h1>
@@ -209,7 +211,7 @@
                     <svg class="w-full h-full" viewBox="0 0 100 100">
                         <path d="M10 50 Q50 10 90 50 Q50 90 10 50" fill="none" stroke="#d69e2e" stroke-width="2" stroke-dasharray="5" opacity="0.5"/>
                         <path d="M20 50 Q50 20 80 50 Q50 80 20 50" fill="none" stroke="#d69e2e" stroke-width="2" stroke-dasharray="5" opacity="0.5"/>
-                        <path d="M30 50 Q50 30 70 50 Q50 70 30 50" fill="none" stroke="#d69e2e" stroke-width="2" stroke-dasharray="5" opacity="0.5"/>
+                        <path d="M30 50 Q50 30 70 50 Q50 70 30 50" fill="none" stroke="#d69e2e" stroke-width="2" stroke-dasharray="5" openeracity="0.5"/>
                     </svg>
                 </div>
             </section>
@@ -241,6 +243,40 @@
                             <h3 class="text-xl text-gray-200 font-bold">Project 4</h3>
                             <p class="text-gray-400">AI-powered chatbot integration.</p>
                         </div>
+                    </div>
+                </div>
+                <div class="absolute inset-0 opacity-30">
+                    <svg class="w-full h-full" viewBox="0 0 100 100">
+                        <path d="M10 50 Q50 10 90 50 Q50 90 10 50" fill="none" stroke="#d69e2e" stroke-width="2" stroke-dasharray="5" opacity="0.5"/>
+                        <path d="M20 50 Q50 20 80 50 Q50 80 20 50" fill="none" stroke="#d69e2e" stroke-width="2" stroke-dasharray="5" opacity="0.5"/>
+                        <path d="M30 50 Q50 30 70 50 Q50 70 30 50" fill="none" stroke="#d69e2e" stroke-width="2" stroke-dasharray="5" opacity="0.5"/>
+                    </svg>
+                </div>
+            </section>
+
+            <section id="blog" class="section min-h-screen flex flex-col items-center justify-center relative gsap-slideLeft">
+                <h2 class="text-4xl text-[#d69e2e] font-bold mb-8">Blog & Updates</h2>
+                <div class="max-w-2xl w-full">
+                    <div class="bg-[#1a202c] p-6 rounded-lg shadow-md mb-4 gsap-zoomIn">
+                        <h3 class="text-2xl text-[#d69e2e] font-bold">Latest Project Update</h3>
+                        <p class="text-gray-400 mt-2">Working on a new AI chatbot integration - stay tuned!</p>
+                    </div>
+                </div>
+                <div class="absolute inset-0 opacity-30">
+                    <svg class="w-full h-full" viewBox="0 0 100 100">
+                        <path d="M10 50 Q50 10 90 50 Q50 90 10 50" fill="none" stroke="#d69e2e" stroke-width="2" stroke-dasharray="5" opacity="0.5"/>
+                        <path d="M20 50 Q50 20 80 50 Q50 80 20 50" fill="none" stroke="#d69e2e" stroke-width="2" stroke-dasharray="5" opacity="0.5"/>
+                        <path d="M30 50 Q50 30 70 50 Q50 70 30 50" fill="none" stroke="#d69e2e" stroke-width="2" stroke-dasharray="5" opacity="0.5"/>
+                    </svg>
+                </div>
+            </section>
+
+            <section id="testimonials" class="section min-h-screen flex flex-col items-center justify-center relative gsap-slideRight">
+                <h2 class="text-4xl text-[#d69e2e] font-bold mb-8">Testimonials</h2>
+                <div class="max-w-2xl w-full">
+                    <div class="bg-[#1a202c] p-6 rounded-lg shadow-md mb-4 gsap-zoomIn">
+                        <p class="text-gray-400">"Mohamed delivered an amazing blockchain solution for us!"</p>
+                        <p class="text-[#d69e2e] mt-2 font-bold">- Client X</p>
                     </div>
                 </div>
                 <div class="absolute inset-0 opacity-30">
