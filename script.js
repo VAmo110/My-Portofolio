@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chatBot.classList.add('hidden');
     });
 
-    sendChat.addEventListener('click', async () => {
+    sendChat.addEventListener('click', () => {
         const message = chatInput.value.trim();
         if (message) {
             addMessage('You: ' + message, 'user');
@@ -202,37 +202,15 @@ document.addEventListener('DOMContentLoaded', () => {
             messageCount++;
             updateChatNotification();
 
-            try {
-                const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer YOUR_OPENAI_API_KEY' // Replace with your API key
-                    },
-                    body: JSON.stringify({
-                        model: 'gpt-4o',
-                        messages: chatHistory,
-                        max_tokens: 300,
-                        temperature: 0.7,
-                        top_p: 0.9,
-                        presence_penalty: 0.6,
-                        frequency_penalty: 0.5
-                    })
-                });
+            // رد مؤقت بدل OpenAI API
+            const botResponse = "Chat AI: Thanks for your message! How can I assist you today?";
+            chatHistory.push({ role: 'assistant', content: botResponse });
+            addMessage('Chat AI: ' + botResponse, 'bot');
 
-                const data = await response.json();
-                const botResponse = data.choices[0].message.content.trim();
-                chatHistory.push({ role: 'assistant', content: botResponse });
-                addMessage('Chat AI: ' + botResponse, 'bot');
-
-                if (chatHistory.length > 50) {
-                    chatHistory = chatHistory.slice(-50);
-                }
-                localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
-            } catch (error) {
-                addMessage('Chat AI: Sorry, an error occurred. Please try again later.', 'bot');
-                console.error('Error:', error);
+            if (chatHistory.length > 50) {
+                chatHistory = chatHistory.slice(-50);
             }
+            localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
         }
     });
 
@@ -279,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
         yoyo: true,
         ease: 'power1.inOut',
         onStart: () => {
-            gsap.to('.background-animation', { opacity: 0.3, duration: 1 }); // Fade in
+            gsap.to('.background-animation', { opacity: 0.3, duration: 1 });
         }
     });
 
@@ -356,6 +334,90 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.addEventListener('resize', adjustLayout);
     adjustLayout();
+
+    // Animated Progress Bars for Skills
+    gsap.utils.toArray('.progress-bar').forEach(bar => {
+        gsap.to(bar, {
+            width: `${bar.dataset.progress}%`,
+            duration: 1.5,
+            ease: "power2.inOut",
+            scrollTrigger: { trigger: bar, start: "top 80%" }
+        });
+    });
+
+    // Interactive Timeline for Portfolio
+    document.querySelectorAll('.timeline-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const details = item.querySelector('.details');
+            const isOpen = details.style.height === 'auto';
+            gsap.to(details, {
+                height: isOpen ? 0 : "auto",
+                opacity: isOpen ? 0 : 1,
+                duration: 0.5,
+                ease: "power2.inOut"
+            });
+        });
+    });
+
+    // Scroll-to-Top Button
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollToTopBtn.classList.remove('hidden');
+        } else {
+            scrollToTopBtn.classList.add('hidden');
+        }
+    });
+    scrollToTopBtn.addEventListener('click', () => {
+        gsap.to(window, { scrollTo: 0, duration: 1, ease: "power2.inOut" });
+    });
+
+    // Dynamic Background Particles
+    particlesJS('particles-js', {
+        particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: '#d69e2e' },
+            shape: { type: 'circle' },
+            opacity: { value: 0.5 },
+            size: { value: 3, random: true },
+            move: { enable: true, speed: 2 }
+        },
+        interactivity: {
+            events: { onhover: { enable: true, mode: 'repulse' } }
+        }
+    });
+
+    // Contact Form Validation & Submission
+    emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS User ID
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.querySelector('input[name="name"]').value;
+        const email = document.querySelector('input[name="email"]').value;
+        const message = document.querySelector('textarea[name="message"]').value;
+        if (name && email && message) {
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", { name, email, message })
+                .then(() => alert("Message sent successfully!"))
+                .catch(() => alert("Failed to send message."));
+        } else {
+            alert("Please fill all fields!");
+        }
+    });
+
+    // Sticky Navigation Menu
+    gsap.utils.toArray('.nav-link').forEach(link => {
+        const sectionId = link.getAttribute('href');
+        ScrollTrigger.create({
+            trigger: sectionId,
+            start: 'top center',
+            end: 'bottom center',
+            onEnter: () => link.classList.add('active'),
+            onLeaveBack: () => link.classList.remove('active')
+        });
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            gsap.to(window, { scrollTo: sectionId, duration: 1, ease: "power2.inOut" });
+        });
+    });
 });
 
 // Save chat history in localStorage on page unload
