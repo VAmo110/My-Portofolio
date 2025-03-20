@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENG Mohamed Samir - Personal Website</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <!-- Tailwind CSS -->
-    <link rel="stylesheet" href="./dist/output.css">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
@@ -19,14 +17,25 @@
     <!-- Three.js for 3D Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/controls/OrbitControls.js"></script>
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <!-- EmailJS for Contact Form -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body class="bg-[#1a202c] text-white font-sans overflow-x-hidden" id="body">
     <div class="container mx-auto p-4 relative">
-        <header class="fixed top-0 w-full bg-[#1a202c] shadow-md z-50 p-4 flex justify-between items-center">
+        <header class="fixed top-0 w-full bg-[#1a202c] shadow-md z-50 p-4 flex justify-between items-center sticky-nav">
             <h1 class="text-4xl text-[#d69e2e] font-bold transition-colors duration-300 hover:text-yellow-300 gsap-spinSlow">ENG Mohamed Samir</h1>
-            <div class="flex gap-4">
+            <div class="flex gap-4 items-center">
+                <nav class="flex gap-4">
+                    <a href="#home" class="nav-link text-[#d69e2e] hover:text-yellow-300">Home</a>
+                    <a href="#about" class="nav-link text-[#d69e2e] hover:text-yellow-300">About</a>
+                    <a href="#skills" class="nav-link text-[#d69e2e] hover:text-yellow-300">Skills</a>
+                    <a href="#portfolio" class="nav-link text-[#d69e2e] hover:text-yellow-300">Portfolio</a>
+                    <a href="#contact" class="nav-link text-[#d69e2e] hover:text-yellow-300">Contact</a>
+                </nav>
                 <button id="open-controls" class="text-[#d69e2e] hover:text-yellow-300 transition-colors duration-300 text-lg gsap-hover">Open Controls</button>
                 <button id="toggle-dark-mode" class="text-[#d69e2e] hover:text-yellow-300 transition-colors duration-300 text-lg gsap-hover">Toggle Dark Mode</button>
             </div>
@@ -34,6 +43,7 @@
 
         <main>
             <section id="home" class="section min-h-screen flex flex-col items-center justify-center relative gsap-fadeIn">
+                <div id="particles-js" class="absolute inset-0 z-0"></div>
                 <div id="three-canvas" class="absolute inset-0 z-0"></div>
                 <div class="background-animation absolute inset-0 z-0" style="background: linear-gradient(45deg, #1a202c, #d69e2e); opacity: 0;"></div>
                 <h2 class="text-3xl text-gray-200 font-bold mb-4">Yo, Nice to Meet You</h2>
@@ -86,27 +96,39 @@
                 <h2 class="text-4xl text-[#d69e2e] font-bold mb-8">Skills</h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-6 max-w-2xl w-full">
                     <div class="flex flex-col items-center gsap-zoomIn">
-                        <div class="w-24 h-24 bg-[#48bb78] rounded-full flex items-center justify-center text-white font-bold shadow-lg animate-pulseSlow glow">97%</div>
+                        <div class="w-24 h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-[#48bb78] progress-bar" style="width: 0%;" data-progress="97"></div>
+                        </div>
                         <p class="text-[#d69e2e] mt-2">Front-End</p>
                     </div>
                     <div class="flex flex-col items-center gsap-zoomIn delay-100">
-                        <div class="w-24 h-24 bg-[#48bb78] rounded-full flex items-center justify-center text-white font-bold shadow-lg animate-pulseSlow delay-100 glow">92%</div>
+                        <div class="w-24 h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-[#48bb78] progress-bar" style="width: 0%;" data-progress="92"></div>
+                        </div>
                         <p class="text-[#d69e2e] mt-2">Animation</p>
                     </div>
                     <div class="flex flex-col items-center gsap-zoomIn delay-200">
-                        <div class="w-24 h-24 bg-[#48bb78] rounded-full flex items-center justify-center text-white font-bold shadow-lg animate-pulseSlow delay-200 glow">80%</div>
+                        <div class="w-24 h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-[#48bb78] progress-bar" style="width: 0%;" data-progress="80"></div>
+                        </div>
                         <p class="text-[#d69e2e] mt-2">AI</p>
                     </div>
                     <div class="flex flex-col items-center gsap-zoomIn delay-300">
-                        <div class="w-24 h-24 bg-[#48bb78] rounded-full flex items-center justify-center text-white font-bold shadow-lg animate-pulseSlow delay-300 glow">93%</div>
+                        <div class="w-24 h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-[#48bb78] progress-bar" style="width: 0%;" data-progress="93"></div>
+                        </div>
                         <p class="text-[#d69e2e] mt-2">Database</p>
                     </div>
                     <div class="flex flex-col items-center gsap-zoomIn delay-400">
-                        <div class="w-24 h-24 bg-[#48bb78] rounded-full flex items-center justify-center text-white font-bold shadow-lg animate-pulseSlow delay-400 glow">85%</div>
+                        <div class="w-24 h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-[#48bb78] progress-bar" style="width: 0%;" data-progress="85"></div>
+                        </div>
                         <p class="text-[#d69e2e] mt-2">Back-end</p>
                     </div>
                     <div class="flex flex-col items-center gsap-zoomIn delay-500">
-                        <div class="w-24 h-24 bg-[#48bb78] rounded-full flex items-center justify-center text-white font-bold shadow-lg animate-pulseSlow delay-500 glow">95%</div>
+                        <div class="w-24 h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-[#48bb78] progress-bar" style="width: 0%;" data-progress="95"></div>
+                        </div>
                         <p class="text-[#d69e2e] mt-2">NFT</p>
                     </div>
                 </div>
@@ -211,7 +233,7 @@
                     <svg class="w-full h-full" viewBox="0 0 100 100">
                         <path d="M10 50 Q50 10 90 50 Q50 90 10 50" fill="none" stroke="#d69e2e" stroke-width="2" stroke-dasharray="5" opacity="0.5"/>
                         <path d="M20 50 Q50 20 80 50 Q50 80 20 50" fill="none" stroke="#d69e2e" stroke-width="2" stroke-dasharray="5" opacity="0.5"/>
-                        <path d="M30 50 Q50 30 70 50 Q50 70 30 50" fill="none" stroke="#d69e2e" stroke-width="2" stroke-dasharray="5" openeracity="0.5"/>
+                        <path d="M30 50 Q50 30 70 50 Q50 70 30 50" fill="none" stroke="#d69e2e" stroke-width="2" stroke-dasharray="5" opacity="0.5"/>
                     </svg>
                 </div>
             </section>
@@ -226,24 +248,24 @@
                         <button class="filter-btn bg-[#1a202c] text-[#d69e2e] px-4 py-2 rounded-lg hover:bg-[#d69e2e] hover:text-[#1a202c] transition-colors duration-300 gsap-hover">Blockchain</button>
                         <button class="filter-btn bg-[#1a202c] text-[#d69e2e] px-4 py-2 rounded-lg hover:bg-[#d69e2e] hover:text-[#1a202c] transition-colors duration-300 gsap-hover">AI</button>
                     </div>
-                    <div class="project-grid grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-                        <div class="project-card bg-[#1a202c] p-6 rounded-lg shadow-md hover:shadow-lg transition-transform duration-300 hover:scale-105 animate-zoomIn gsap-zoomIn category-website category-all">
-                            <h3 class="text-xl text-gray-200 font-bold">Project 1</h3>
-                            <p class="text-gray-400">Intelligent project management app using AI.</p>
-                        </div>
-                        <div class="project-card bg-[#1a202c] p-6 rounded-lg shadow-md hover:shadow-lg transition-transform duration-300 hover:scale-105 animate-zoomIn delay-200 gsap-zoomIn category-animation category-all">
-                            <h3 class="text-xl text-gray-200 font-bold">Project 2</h3>
-                            <p class="text-gray-400">Responsive website using Tailwind CSS.</p>
-                        </div>
-                        <div class="project-card bg-[#1a202c] p-6 rounded-lg shadow-md hover:shadow-lg transition-transform duration-300 hover:scale-105 animate-zoomIn delay-400 gsap-zoomIn category-blockchain category-all">
-                            <h3 class="text-xl text-gray-200 font-bold">Project 3</h3>
-                            <p class="text-gray-400">Smart data analysis system.</p>
-                        </div>
-                        <div class="project-card bg-[#1a202c] p-6 rounded-lg shadow-md hover:shadow-lg transition-transform duration-300 hover:scale-105 animate-zoomIn delay-600 gsap-zoomIn category-ai category-all">
-                            <h3 class="text-xl text-gray-200 font-bold">Project 4</h3>
-                            <p class="text-gray-400">AI-powered chatbot integration.</p>
-                        </div>
-                    </div>
+                    <ul class="timeline max-w-2xl w-full">
+                        <li class="timeline-item gsap-slideRight">
+                            <h3 class="text-xl text-[#d69e2e]">Project 1</h3>
+                            <p class="text-gray-400 hidden details">Intelligent project management app using AI.</p>
+                        </li>
+                        <li class="timeline-item gsap-slideRight delay-200">
+                            <h3 class="text-xl text-[#d69e2e]">Project 2</h3>
+                            <p class="text-gray-400 hidden details">Responsive website using Tailwind CSS.</p>
+                        </li>
+                        <li class="timeline-item gsap-slideRight delay-400">
+                            <h3 class="text-xl text-[#d69e2e]">Project 3</h3>
+                            <p class="text-gray-400 hidden details">Smart data analysis system.</p>
+                        </li>
+                        <li class="timeline-item gsap-slideRight delay-600">
+                            <h3 class="text-xl text-[#d69e2e]">Project 4</h3>
+                            <p class="text-gray-400 hidden details">AI-powered chatbot integration.</p>
+                        </li>
+                    </ul>
                 </div>
                 <div class="absolute inset-0 opacity-30">
                     <svg class="w-full h-full" viewBox="0 0 100 100">
@@ -321,10 +343,10 @@
 
             <section id="contact" class="section min-h-screen flex flex-col items-center justify-center gsap-slideRight">
                 <h2 class="text-4xl text-[#d69e2e] font-bold mb-8">Contact</h2>
-                <form class="max-w-md w-full p-6 bg-[#1a202c] rounded-lg shadow-md">
-                    <input type="text" placeholder="Your Name" required class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-[#1a202c] text-white placeholder-gray-400">
-                    <input type="email" placeholder="Your Email" required class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-[#1a202c] text-white placeholder-gray-400">
-                    <textarea placeholder="Your Message" required class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-[#1a202c] text-white placeholder-gray-400 h-32"></textarea>
+                <form id="contact-form" class="max-w-md w-full p-6 bg-[#1a202c] rounded-lg shadow-md">
+                    <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-[#1a202c] text-white placeholder-gray-400">
+                    <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-[#1a202c] text-white placeholder-gray-400">
+                    <textarea name="message" placeholder="Your Message" required class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-[#1a202c] text-white placeholder-gray-400 h-32"></textarea>
                     <button type="submit" class="bg-[#dc3545] text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-transform duration-300 gsap-hover gsap-click">Send</button>
                 </form>
                 <div class="mt-6 flex gap-4">
@@ -361,6 +383,11 @@
             <span class="absolute top-0 right-0 bg-[#dc3545] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">1</span>
         </button>
 
+        <!-- Scroll-to-Top Button -->
+        <button id="scroll-to-top" class="fixed bottom-6 left-6 bg-[#d69e2e] text-[#1a202c] p-3 rounded-full shadow-lg hover:bg-yellow-300 transition-colors duration-300 hidden gsap-hover">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
         <!-- Controls Modal -->
         <div id="controls-modal" class="fixed inset-0 bg-[#1a202c] bg-opacity-75 flex items-center justify-center hidden z-50">
             <div class="bg-[#1a202c] p-6 rounded-lg shadow-lg w-80">
@@ -371,7 +398,6 @@
         </div>
     </div>
 
-    <!-- ربط ملف script.js -->
     <script type="module" src="script.js"></script>
 </body>
 </html>
