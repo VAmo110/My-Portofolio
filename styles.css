@@ -5,10 +5,8 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 .background-animation {
-    background: linear-gradient(45deg, rgba(220, 53, 69, 0.3), rgba(26, 32, 44, 0.9)); /* Red gradient on dark background */
+    background: linear-gradient(45deg, rgba(220, 53, 69, 0.3), rgba(26, 32, 44, 0.9));
     animation: bgMove 10s infinite ease-in-out;
     z-index: -1;
 }
@@ -176,4 +174,29 @@
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
+}
+
+/* إضافة Dark Mode */
+body.dark-mode {
+    background-color: #1a202c;
+    color: #ffffff;
+}
+
+/* تحسين Responsive Design */
+@media (max-width: 768px) {
+    .section {
+        padding: 1rem;
+    }
+    .text-4xl {
+        font-size: 1.5rem;
+    }
+    .text-5xl {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .grid-cols-2 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
 }
